@@ -1,18 +1,11 @@
+#ifndef MOCKOS_ABSTRACTFILE_H
+#define MOCKOS_ABSTRACTFILE_H
+
 #include <iostream>
 #include <vector>
 #include <string>
 
 using namespace std;
-
-enum error_code {
-    SUCCESS,
-    INVALID_IMAGE,
-    SIZE_MISMATCH,
-    APPEND_NOT_SUPPORTED,
-    FILE_ALREADY_EXISTS,
-    FILE_IS_NULL,
-    INVALID_FILE_TYPE
-};
 
 class AbstractFile {
 public:
@@ -21,4 +14,7 @@ public:
     virtual int append(vector<char> appendage) = 0;
     virtual unsigned int getSize() = 0;
     virtual string getName() = 0;
+    virtual ~AbstractFile() = default;
 };
+
+#endif //MOCKOS_ABSTRACTFILE_H

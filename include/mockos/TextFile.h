@@ -1,3 +1,6 @@
+#ifndef MOCKOS_TEXTFILE_H
+#define MOCKOS_TEXTFILE_H
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -17,3 +20,5 @@ private:
     string name;
     vector<char> contents;
 };
+
+#endif //MOCKOS_TEXTFILE_H

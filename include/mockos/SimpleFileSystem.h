@@ -1,3 +1,6 @@
+#ifndef MOCKOS_SIMPLEFILESYSTEM_H
+#define MOCKOS_SIMPLEFILESYSTEM_H
+
 #include <iostream>
 #include <map>
 #include <set>
@@ -16,3 +19,5 @@ public:
     AbstractFile * openFile(string fileName) override;
     int closeFile(AbstractFile * file) override;
 };
+
+#endif //MOCKOS_SIMPLEFILESYSTEM_H

@@ -1,5 +1,6 @@
 #include <string>
 #include "mockos/TextFile.h"
+#include "mockos/Constants.h"
 
 using namespace std;
 
@@ -14,12 +15,12 @@ void TextFile::read() {
 
 int TextFile::write(vector<char> newVect) {
     contents = newVect;
-    return 0;
+    return SUCCESS;
 }
 
 int TextFile::append(vector<char> addtlVect){
     contents.insert(contents.end(), addtlVect.begin(), addtlVect.end());
-    return 0;
+    return SUCCESS;
 
 }
 

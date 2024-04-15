@@ -2,6 +2,9 @@
 #include <vector>
 #include <string>
 #include "mockos/ImageFile.h"
+#include "mockos/TextFile.h"
+#include "mockos/Constants.h"
+#include "mockos/SimpleFileSystem.h"
 
 using namespace std;
 
@@ -47,5 +50,19 @@ int main () {
         cout << "Failed to write inputted image" << endl;
     }
 
+    cout << endl;
+    cout << "SimpleFileSystem tests" << endl;
+    SimpleFileSystem sfs;
+    TextFile textFile("test");
+    sfs.addFile(textFile.getName(), &textFile);
+    sfs.addFile(imageFile1.getName(), &imageFile1);
+    sfs.createFile("testImage.img");
+    sfs.createFile("testText.txt");
+    AbstractFile* open1 = sfs.openFile(textFile.getName());
+    vector<char> t = {'p', 'r', 'i', 'z', 'e'};
+    open1->write(t);
+    open1->read();
+    sfs.closeFile(open1);
+    sfs.deleteFile(textFile.getName());
     return 0;
 }

@@ -1,3 +1,6 @@
+#ifndef MOCKOS_ABSTRACTFILESYSTEM_H
+#define MOCKOS_ABSTRACTFILESYSTEM_H
+
 #include <iostream>
 #include "AbstractFile.h"
 
@@ -11,3 +14,5 @@ public:
     virtual AbstractFile * openFile(string fileName) = 0;
     virtual int closeFile(AbstractFile * file) = 0;
 };
+
+#endif //MOCKOS_ABSTRACTFILESYSTEM_H

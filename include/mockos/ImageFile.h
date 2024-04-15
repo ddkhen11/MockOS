@@ -1,3 +1,6 @@
+#ifndef MOCKOS_IMAGEFILE_H
+#define MOCKOS_IMAGEFILE_H
+
 #include <iostream>
 #include <string>
 #include "AbstractFile.h"
@@ -18,3 +21,5 @@ public:
     int append(vector<char> newVect) override;
     void read() override;
 };
+
+#endif //MOCKOS_IMAGEFILE_H

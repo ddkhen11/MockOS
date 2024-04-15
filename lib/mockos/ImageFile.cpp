@@ -1,4 +1,6 @@
 #include "mockos/ImageFile.h"
+#include "mockos/Constants.h"
+#include <cmath>
 
 ImageFile::ImageFile(string newName): name(newName), size(0) {}
 
@@ -11,10 +13,10 @@ string ImageFile::getName(){
 }
 
 int ImageFile::write(vector<char> image) {
-    size = image.back() - 48;
+    int imgSize = image.back() - 48;
     image.pop_back();
 
-    if (image.size() != size * size) {
+    if (image.size() != imgSize * imgSize) {
         return SIZE_MISMATCH;
     }
 
@@ -25,6 +27,8 @@ int ImageFile::write(vector<char> image) {
         contents.push_back(pixel);
     }
 
+    size = imgSize * imgSize;
+
     return SUCCESS;
 }
 
@@ -33,12 +37,12 @@ int ImageFile::append(vector<char> newVect) {
 }
 
 int ImageFile::coordToIndex(int x, int y) {
-    return y * size + x;
+    return y * sqrt(size) + x;
 }
 
 void ImageFile::read() {
-    for (int y = 0; y < size; ++y){
-        for (int x = 0; x < size; ++x) {
+    for (int y = 0; y < sqrt(size); ++y){
+        for (int x = 0; x <  sqrt(size); ++x) {
             int index = coordToIndex(x, y);
             cout << contents[index] << " ";
         }

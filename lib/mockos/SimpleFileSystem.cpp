@@ -3,6 +3,8 @@
 #include "mockos/ImageFile.h"
 #include <sstream>
 
+using namespace std;
+
 int SimpleFileSystem::addFile(string fileName, AbstractFile *file) {
     if (files.find(fileName) != files.end()) {
         return FILE_ALREADY_EXISTS;
@@ -29,12 +31,12 @@ int SimpleFileSystem::createFile(string fileName) {
     getline(iss, fileExt);
 
     if (fileExt == "txt") {
-        TextFile* file = new TextFile(fileName);
+        auto* file = new TextFile(fileName);
         pair<string, AbstractFile*> filePair = make_pair(fileName, file);
         files.insert(filePair);
         return SUCCESS;
     } else if (fileExt == "img") {
-        ImageFile* file = new ImageFile(fileName);
+        auto* file = new ImageFile(fileName);
         pair<string, AbstractFile*> filePair = make_pair(fileName, file);
         files.insert(filePair);
         return SUCCESS;
