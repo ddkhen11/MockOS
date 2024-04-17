@@ -21,31 +21,6 @@ int SimpleFileSystem::addFile(string fileName, AbstractFile *file) {
     return SUCCESS;
 }
 
-int SimpleFileSystem::createFile(string fileName) {
-    if (files.find(fileName) != files.end()) {
-        return FILE_ALREADY_EXISTS;
-    }
-
-    istringstream iss(fileName);
-    string fileExt;
-    getline(iss, fileExt, '.');
-    getline(iss, fileExt);
-
-    if (fileExt == "txt") {
-        auto* file = new TextFile(fileName);
-        pair<string, AbstractFile*> filePair = make_pair(fileName, file);
-        files.insert(filePair);
-        return SUCCESS;
-    } else if (fileExt == "img") {
-        auto* file = new ImageFile(fileName);
-        pair<string, AbstractFile*> filePair = make_pair(fileName, file);
-        files.insert(filePair);
-        return SUCCESS;
-    } else {
-        return INVALID_FILE_TYPE;
-    }
-}
-
 AbstractFile * SimpleFileSystem::openFile(string fileName) {
     auto fileIterator = files.find(fileName);
     if (fileIterator != files.end()) {

@@ -14,7 +14,6 @@ private:
     set<AbstractFile*> openFiles;
 public:
     int addFile(string fileName, AbstractFile * file) override;
-    int createFile(string fileName) override;
     int deleteFile(string fileName) override;
     AbstractFile * openFile(string fileName) override;
     int closeFile(AbstractFile * file) override;
