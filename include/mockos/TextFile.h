@@ -8,17 +8,27 @@
 
 using namespace std;
 
-class TextFile: public AbstractFile {
+class TextFile : public AbstractFile {
 public:
     TextFile(string newName);
+
     unsigned int getSize() override;
+
     string getName() override;
+
     int write(vector<char> newVect) override;
+
     int append(vector<char> addtlVect) override;
-    void read() override;
+
+    vector<char> read() override;
+
+    void accept(AbstractFileVisitor *afv) override;
+
 private:
     string name;
     vector<char> contents;
 };
+
+#include "AbstractFileVisitor.h"
 
 #endif //MOCKOS_TEXTFILE_H

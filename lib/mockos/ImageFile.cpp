@@ -1,6 +1,7 @@
 #include "mockos/ImageFile.h"
 #include "mockos/Constants.h"
 #include <cmath>
+#include <vector>
 
 ImageFile::ImageFile(string newName): name(newName), size(0) {}
 
@@ -40,13 +41,19 @@ int ImageFile::coordToIndex(int x, int y) {
     return y * sqrt(size) + x;
 }
 
-void ImageFile::read() {
-    for (int y = 0; y < sqrt(size); ++y){
-        for (int x = 0; x <  sqrt(size); ++x) {
-            int index = coordToIndex(x, y);
-            cout << contents[index] << " ";
-        }
-        cout << endl;
-    }
+vector<char> ImageFile::read() {
+//    for (int y = 0; y < sqrt(size); ++y){
+//        for (int x = 0; x <  sqrt(size); ++x) {
+//            int index = coordToIndex(x, y);
+//            cout << contents[index] << " ";
+//        }
+//        cout << endl;
+//    }
+
+    return contents;
+}
+
+void ImageFile::accept(AbstractFileVisitor *afv) {
+    afv->visit_ImageFile(this);
 }
 

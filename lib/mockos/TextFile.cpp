@@ -1,4 +1,5 @@
 #include <string>
+#include <vector>
 #include "mockos/TextFile.h"
 #include "mockos/Constants.h"
 
@@ -6,11 +7,13 @@ using namespace std;
 
 TextFile::TextFile(string newName): name(newName){}
 
-void TextFile::read() {
-    for (char c : contents) {
-        cout << c;
-    }
-    cout << endl;
+vector<char> TextFile::read() {
+//    for (char c : contents) {
+//        cout << c;
+//    }
+//    cout << endl;
+
+    return contents;
 }
 
 int TextFile::write(vector<char> newVect) {
@@ -30,4 +33,8 @@ unsigned int TextFile::getSize(){
 
 string TextFile::getName(){
     return name;
+}
+
+void TextFile::accept(AbstractFileVisitor *afv) {
+    afv->visit_TextFile(this);
 }
