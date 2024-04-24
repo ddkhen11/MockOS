@@ -12,6 +12,7 @@ enum error_code {
     FILE_NOT_OPEN,
     FILE_DOES_NOT_EXIST,
     FILE_IS_OPEN,
+    PASSWORDS_DONT_MATCH
 };
 
 #endif //MOCKOS_CONSTANTS_H
