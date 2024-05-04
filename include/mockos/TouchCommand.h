@@ -1,3 +1,6 @@
+#ifndef MOCKOS_TOUCHCOMMAND_H
+#define MOCKOS_TOUCHCOMMAND_H
+
 #include "mockos/AbstractCommand.h"
 #include "mockos/AbstractFileFactory.h"
 #include "mockos/AbstractFileSystem.h"
@@ -15,3 +18,5 @@ private:
     AbstractFileSystem * fileSystem;
     AbstractFileFactory * fileFactory;
 };
+
+#endif //MOCKOS_TOUCHCOMMAND_H

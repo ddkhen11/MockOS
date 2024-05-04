@@ -8,7 +8,7 @@ using namespace std;
 
 class AbstractCommand {
 public:
-    ~AbstractCommand() = default;
+    virtual ~AbstractCommand() = default;
     virtual int execute(string s) = 0;
     virtual void displayInfo() = 0;
 };
