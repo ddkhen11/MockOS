@@ -64,5 +64,5 @@ int main () {
     open1->read();
     sfs.closeFile(open1);
     sfs.deleteFile(textFile.getName());
-    return 0;
+    return SUCCESS;
 }
