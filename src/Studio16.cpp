@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include "mockos/TextFile.h"
+#include "mockos/Constants.h"
 
 using namespace std;
 
@@ -29,4 +30,6 @@ int main () {
     p->read();
     p->write(test3);
     p->read();
+
+    return SUCCESS;
 }

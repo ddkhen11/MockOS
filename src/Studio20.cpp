@@ -22,4 +22,6 @@ int main() {
     proxy.write({' ', 'p', 'r', 'o', 'z', 'e'});
     BasicDisplayVisitor bdv;
     proxy.accept(&bdv);
+
+    return SUCCESS;
 }
