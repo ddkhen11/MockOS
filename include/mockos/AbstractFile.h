@@ -8,6 +8,7 @@
 
 using namespace std;
 
+//base class for all files, several functions that are overridden by children
 class AbstractFile {
 public:
     virtual vector<char> read() = 0;

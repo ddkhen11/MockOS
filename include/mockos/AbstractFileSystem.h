@@ -8,6 +8,7 @@
 
 using namespace std;
 
+// base class for file systems, which store and manage several files
 class AbstractFileSystem {
 public:
     virtual int addFile(string fileName, AbstractFile * file) = 0;

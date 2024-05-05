@@ -6,7 +6,10 @@
 #include "ImageFile.h"
 
 class MetadataDisplayVisitor : public AbstractFileVisitor {
+    // Displays text file metadata
     void visit_TextFile(TextFile *text) override;
+
+    // Displays image file metadata
     void visit_ImageFile(ImageFile *image) override;
 };
 

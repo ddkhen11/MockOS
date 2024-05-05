@@ -6,7 +6,9 @@
 #include "ImageFile.h"
 
 class BasicDisplayVisitor : public AbstractFileVisitor {
+    // Displays text file
     void visit_TextFile(TextFile *textFile) override;
+    // Displays image file
     void visit_ImageFile(ImageFile *imageFile) override;
 };
 

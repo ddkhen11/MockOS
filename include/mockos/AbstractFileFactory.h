@@ -6,6 +6,7 @@
 
 using namespace std;
 
+//base class for file factories which create files
 class AbstractFileFactory {
 public:
     virtual AbstractFile * createFile(string fileName) = 0;

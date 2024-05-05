@@ -1,6 +1,7 @@
 #ifndef MOCKOS_CONSTANTS_H
 #define MOCKOS_CONSTANTS_H
 
+// All enumeration codes
 enum error_code {
     SUCCESS,
     INVALID_IMAGE,

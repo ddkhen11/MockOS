@@ -7,8 +7,10 @@
 
 using namespace std;
 
+// Inherits AbstractFileFactory interface
 class SimpleFileFactory: public AbstractFileFactory {
 public:
+    // Creates a file
     AbstractFile * createFile(string fileName) override;
 };
 

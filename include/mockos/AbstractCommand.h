@@ -6,6 +6,7 @@
 
 using namespace std;
 
+//Base class for all commands
 class AbstractCommand {
 public:
     virtual ~AbstractCommand() = default;
