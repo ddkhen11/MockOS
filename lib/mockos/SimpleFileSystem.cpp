@@ -3,6 +3,7 @@
 #include "mockos/ImageFile.h"
 #include "mockos/Constants.h"
 #include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -55,5 +56,13 @@ int SimpleFileSystem::deleteFile(string fileName) {
     delete it->second;
 
     return SUCCESS;
+}
+
+set<string> SimpleFileSystem::getFileNames() {
+    set<string> fileNames;
+    for (const auto& filePair : files) {
+        fileNames.insert(filePair.first);
+    }
+    return fileNames;
 }
 

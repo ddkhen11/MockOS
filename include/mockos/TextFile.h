@@ -24,6 +24,8 @@ public:
 
     void accept(AbstractFileVisitor *afv) override;
 
+    AbstractFile *clone(string newName) override;
+
 private:
     string name;
     vector<char> contents;

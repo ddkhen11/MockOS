@@ -2,6 +2,8 @@
 #define MOCKOS_ABSTRACTFILESYSTEM_H
 
 #include <iostream>
+#include <set>
+#include <string>
 #include "AbstractFile.h"
 
 using namespace std;
@@ -12,6 +14,7 @@ public:
     virtual int deleteFile(string fileName) = 0;
     virtual AbstractFile * openFile(string fileName) = 0;
     virtual int closeFile(AbstractFile * file) = 0;
+    virtual set<string> getFileNames() = 0;
 };
 
 #endif //MOCKOS_ABSTRACTFILESYSTEM_H

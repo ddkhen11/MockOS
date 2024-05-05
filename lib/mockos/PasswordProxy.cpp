@@ -2,7 +2,7 @@
 #include "mockos/Constants.h"
 #include <string>
 
-PasswordProxy::PasswordProxy(AbstractFile * _file, string _password): file(_file), password(_password){}
+PasswordProxy::PasswordProxy(AbstractFile *_file, string _password) : file(_file), password(_password) {}
 
 PasswordProxy::~PasswordProxy() {
     delete file;
@@ -61,4 +61,10 @@ void PasswordProxy::accept(AbstractFileVisitor *afv) {
     if (passwordChecker(passwordPrompt())) {
         file->accept(afv);
     }
+}
+
+AbstractFile *PasswordProxy::clone(string newName) {
+    auto* newFile = this->file->clone(newName);
+    auto* newProxy = new PasswordProxy(newFile, this->password);
+    return newProxy;
 }

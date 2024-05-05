@@ -3,13 +3,13 @@
 #include <cmath>
 #include <vector>
 
-ImageFile::ImageFile(string newName): name(newName), size(0) {}
+ImageFile::ImageFile(string newName) : name(newName), size(0) {}
 
 unsigned int ImageFile::getSize() {
     return size;
 }
 
-string ImageFile::getName(){
+string ImageFile::getName() {
     return name;
 }
 
@@ -21,7 +21,7 @@ int ImageFile::write(vector<char> image) {
         return SIZE_MISMATCH;
     }
 
-    for (auto pixel : image) {
+    for (auto pixel: image) {
         if (pixel != 'X' && pixel != ' ') {
             return INVALID_IMAGE;
         }
@@ -57,3 +57,8 @@ void ImageFile::accept(AbstractFileVisitor *afv) {
     afv->visit_ImageFile(this);
 }
 
+AbstractFile *ImageFile::clone(string newName) {
+    auto* newFile = new ImageFile(newName + ".img");
+    newFile->contents = this->contents;
+    return newFile;
+}

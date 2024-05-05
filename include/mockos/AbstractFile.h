@@ -23,6 +23,8 @@ public:
     virtual void accept(AbstractFileVisitor *afv) = 0;
 
     virtual ~AbstractFile() = default;
+
+    virtual AbstractFile *clone(string newName) = 0;
 };
 
 #endif //MOCKOS_ABSTRACTFILE_H

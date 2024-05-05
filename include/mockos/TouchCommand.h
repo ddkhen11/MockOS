@@ -10,7 +10,7 @@ using namespace std;
 class TouchCommand : public AbstractCommand {
 public:
     TouchCommand(AbstractFileSystem* fileSystem, AbstractFileFactory* fileFactory);
-    virtual ~TouchCommand() = default;
+    ~TouchCommand() override = default;
     void displayInfo() override;
     int execute(string s) override;
 

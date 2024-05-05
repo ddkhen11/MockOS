@@ -30,6 +30,8 @@ public:
     int coordToIndex(int x, int y);
 
     void accept(AbstractFileVisitor *afv) override;
+
+    AbstractFile *clone(string newName) override;
 };
 
 #include "AbstractFileVisitor.h"

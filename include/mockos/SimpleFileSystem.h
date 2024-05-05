@@ -4,6 +4,7 @@
 #include <iostream>
 #include <map>
 #include <set>
+#include <string>
 #include "AbstractFileSystem.h"
 
 using namespace std;
@@ -17,6 +18,7 @@ public:
     int deleteFile(string fileName) override;
     AbstractFile * openFile(string fileName) override;
     int closeFile(AbstractFile * file) override;
+    set<string> getFileNames() override;
 };
 
 #endif //MOCKOS_SIMPLEFILESYSTEM_H

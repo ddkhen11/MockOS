@@ -3,6 +3,7 @@
 #include "mockos/ImageFile.h"
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -14,15 +15,20 @@ void BasicDisplayVisitor::visit_TextFile(TextFile *textFile) {
 }
 
 void BasicDisplayVisitor::visit_ImageFile(ImageFile *imageFile) {
-    unsigned int size = imageFile->getSize();
     vector<char> contents = imageFile->read();
 
-    for (int y = 0; y < sqrt(size); ++y) {
-        for (int x = 0; x < sqrt(size); ++x) {
+    int n = sqrt(imageFile->getSize());
+
+    if (n * n != contents.size()) {
+        cerr << "Error: invalid size" << endl;
+        return;
+    }
+
+    for (int y = 0; y < n; ++y) {
+        for (int x = 0; x < n; ++x) {
             int index = imageFile->coordToIndex(x, y);
-            cout << contents[index] << " ";
+            cout << contents[index];
         }
         cout << endl;
     }
-
 }
