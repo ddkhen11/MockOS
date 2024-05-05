@@ -12,7 +12,6 @@ Document your lab work here according to the lab specification
    out all the file names if "ls" is called. If "ls -m" is called, we use the MetadataDisplayVisitor to display the 
    metadata of each file in the file system. We gain access to the pointer to each file in the file system by 
    opening the file with the file system and then closing the file when we're done displaying it.
-# FIX MetadataDisplayVisitor.cpp
 2. For this command, we use the deleteFile function from the AbstractFileSystem member variable to delete
    the files entered along with the "rm" input.
 3. For this functionality, we changed the execute function in TouchCommand.cpp so that if -p is added to the end of 
@@ -41,5 +40,262 @@ Document your lab work here according to the lab specification
    successful. This execute method ends by closing the file. The addCommand and setParseStrategy methods were also 
    added as public to the class; addCommand pushed back an inputted command onto the vector of AbstractCommands, 
    setParseStrategy took an inputted parsing strategy as a parameter and set it equal to the original parse strategy.
+8. Implementing the rename command:
+   We started this command declaring and defining the RenameParsingStrategy class. It extends the 
+   AbstractParsingStrategy class. It simply pulls the first two words from user input (let's call them first and
+   second) and returns a vector {first second, first}. Next, in main, we created a new instance of a MacroCommand
+   object called rename, updating its parsing strategy to RenameParsingStrategy, and inserted the two commands of
+   copy and remove. Then, we added to our CommandPrompt object cp the command rename, with user input "rn".
+9. Implementing the touch-cat command:
+   We started this command by creating a new MacroCommand object called tc in main, then used the addCommand function
+   to insert the two functions of touch and cat.
+10. During our testing, we realized we made the display command name "dp" instead of "ds" and we fixed this. Here are
+first tests:
 
+[d.d.khen@shell lab5]$ ./mockos
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  touch text.txt
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  touch image.img
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  ls
+image.img           text.txt
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  ls -m
+image.img           image       0
+text.txt            text        0
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  help touch
+touch creates a file. touch can be invoked with the command: touch <filename>
+touch <filename> -p will create a password protected file and prompt you to make your password.
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  touch protected.txt -p
+What is the password?
+password
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  ls
+image.img           protected.txt
+text.txt
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  touch
+Error: Failed creating a new file.
+This command failed and returned error: 13
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  ls -a
+Error: option not supported for ls command
+This command failed and returned error: 15
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  help ls
+ls outputs the names of all files currently in the file system. ls can be invoked with the command: ls
+ls -m will display the metadata for each file as well.
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  help rm
+Remove removes a file, remove can be invoked with the command: rm <filename>
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  touch fileToRemove.txt
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  rm fileToRemove.txt
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  ls
+image.img           protected.txt
+text.txt
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  rm fileToRemove.txt
+Deletion was unsuccessful
+This command failed and returned error: 19
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  help cat
+cat both displays and then appends content to a file. Usage: cat <fileName> [-a]
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  cat text.txt
+hello world
+:q
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  dp text.txt
+
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  cat text.txt
+hello world
+:wq
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  dp text.txt
+hello world
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  cat text.txt -a
+hello world
+
+it's me
+:wq
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  dp text.txt
+hello worldit's me
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  cat dne.txt
+Error: This file does not exist
+This command failed and returned error: 8
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  help dp
+ds opens a file and displays its contents. Usage: ds <fileName> [-d]
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  dp dne.txt
+Error: This file does not exist
+This command failed and returned error: 8
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  cat image.img
+X X X X X3
+:wq
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  dp image.img
+X X
+X
+X X
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  ls
+image.img           protected.txt
+text.txt
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  cat protected.txt
+i am protected
+:wq
+Enter your password:
+notpassowrd
+This command failed and returned error: 10
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  Command not found
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  cat protected.txt
+i am super protected
+:wq
+Enter your password:
+password
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  Command not found
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  dp protected.txt
+Enter your password:
+password
+i am super protected
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  Command not found
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  help cp
+cp will copy a file that exists in the file system and add the copy to the file
+system with a different name. It is invoked with the following command structure:
+cp <file_to_copy> <new_name_with_no_extension>
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  cp thiswontwork.txt lol
+Error: file to copy does not exist in file system
+This command failed and returned error: 8
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  cp this also wont work
+Error: file to copy does not exist in file system
+This command failed and returned error: 8
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  cp thistoo
+Error: option not supported for cp command
+This command failed and returned error: 15
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  ls
+image.img           protected.txt
+text.txt
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  cp image.img imageCopy
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  ls
+image.img           imageCopy.img
+protected.txt       text.txt
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$  dp imageCopy.img
+Error: invalid size
+Enter a command, q to quit, help for a list of commands, or
+help followed by a command name for more information about
+that command.
+$
    
+After these tests, we realized we forgot to set the size member variables of our image copy in our image clone function,
+so we went and fixed that. However, it was at this stage that we also realized that our clone functions were making
+shallow copies, not deep copies, so we went and fixed this as well. 

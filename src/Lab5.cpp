@@ -45,7 +45,7 @@ int main() {
     cp->addCommand("ls", ls);
     cp->addCommand("rm", remove);
     cp->addCommand("cat", cat);
-    cp->addCommand("dp", display);
+    cp->addCommand("ds", display);
     cp->addCommand("cp", copy);
     //macro commands
     cp->addCommand("rn", rename);
