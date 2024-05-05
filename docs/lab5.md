@@ -41,4 +41,5 @@ Document your lab work here according to the lab specification
    successful. This execute method ends by closing the file. The addCommand and setParseStrategy methods were also 
    added as public to the class; addCommand pushed back an inputted command onto the vector of AbstractCommands, 
    setParseStrategy took an inputted parsing strategy as a parameter and set it equal to the original parse strategy.
-8. 
+
+   

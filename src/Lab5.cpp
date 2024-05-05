@@ -20,11 +20,11 @@ int main() {
     AbstractFileSystem* abstractSystem = new SimpleFileSystem();
     AbstractFileFactory* factory = new SimpleFileFactory();
     AbstractCommand* touch = new TouchCommand(abstractSystem, factory);
-    AbstractCommand* ls = new LSCommand(abstractSystem, factory);
+    AbstractCommand* ls = new LSCommand(abstractSystem);
     AbstractCommand* remove = new RemoveCommand(abstractSystem);
     AbstractCommand* cat = new CatCommand(abstractSystem);
     AbstractCommand* display = new DisplayCommand(abstractSystem);
-    AbstractCommand* copy = new CopyCommand(abstractSystem, factory);
+    AbstractCommand* copy = new CopyCommand(abstractSystem);
 
     MacroCommand* rename = new MacroCommand(abstractSystem);
     rename->setParseStrategy(new RenameParsingStrategy());
