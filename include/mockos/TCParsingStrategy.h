@@ -8,7 +8,7 @@
 #include "AbstractParsingStrategy.h"
 
 class TCParsingStrategy : public AbstractParsingStrategy{
-    virtual vector<string> parse(string s);
+    virtual vector<string> parse (string) override;
 };
 
 #endif //MOCKOS_TCPARSINGSTRATEGY_H

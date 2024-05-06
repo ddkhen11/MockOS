@@ -9,7 +9,7 @@
 
 using namespace std;
 
-vector<string> TCParsingStrategy::parse(std::string s) {
+vector<string> TCParsingStrategy::parse(string s) {
     vector<string> inputs;
     istringstream iss(s);
 
