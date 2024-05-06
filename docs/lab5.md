@@ -1,11 +1,16 @@
 # CSE 332 Lab Base
-
 Repository for submitting lab work
 
 Note: We will read this file as raw text rather than markdown.
 
 Names: Malcolm Newmark, Adam Shumway, Daniel Khen
 Lab #: 5
+
+Division of Work:
+ - For all studios we worked collaboratively, using CLion share sessions to work simultaneously
+ - For the lab we split up the commands between the three of us. Adam made CatCommand, TC, and updated Touch
+ - Malcolm made Remove, Rename, worked with Adam on CopyCommand and MacroCommands
+ - Daniel made LSCommand, DisplayCommand, did most of main, and looked over everyone's work
 
 Document your lab work here according to the lab specification
 1. For this command, we use the getFileNames function from the AbstractFileSystem member variable in order to print 
@@ -47,7 +52,9 @@ Document your lab work here according to the lab specification
    object called rename, updating its parsing strategy to RenameParsingStrategy, and inserted the two commands of
    copy and remove. Then, we added to our CommandPrompt object cp the command rename, with user input "rn".
 9. Implementing the touch-cat command:
-   We started this command by creating a new MacroCommand object called tc in main, then used the addCommand function
+   We started this command by creating a new MacroCommand object called tc in main. We then created new header and 
+   source files TCParsingStrategy, in order to parse the inputted file for both the touch and cat commands. We set this
+   TCParsingStrategy to be the parsing strategy for our tc MacroCommand. We then used the addCommand function
    to insert the two functions of touch and cat.
 10. During our testing, we realized we made the display command name "dp" instead of "ds" and we fixed this. Here are
 first tests:

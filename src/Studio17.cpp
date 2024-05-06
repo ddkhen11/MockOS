@@ -9,13 +9,20 @@
 using namespace std;
 
 int main () {
+
     cout << "Call methods by derived class" << endl;
+
+    // Create an image file by derived class and test vectors
     ImageFile imageFile1("test1");
     vector<char> test1 = {'X', 'X', ' ', 'X', '2'};
     vector<char> test2 = {'0'};
     vector<char> test3 = {'X', 'O', 'X', ' ', '2'};
+
+    // Run various tests on imageFile by derived class
     imageFile1.write(test1);
     imageFile1.read();
+
+    // Ensures append operation is not supported
     if (imageFile1.append(test2) != SUCCESS) {
         cout << "Append operation not supported" << endl;
     }
@@ -32,8 +39,12 @@ int main () {
 
     cout << endl;
     cout << "Call methods by aliased abstract class" << endl;
+
+    // Create an imageFile by aliased abstract class
     AbstractFile* p1;
     p1 = &imageFile1;
+
+    // Run various tests on imageFile by aliased abstract class
     p1->read();
     if (p1->append(test2) != SUCCESS) {
         cout << "Append operation not supported" << endl;
@@ -52,6 +63,8 @@ int main () {
 
     cout << endl;
     cout << "SimpleFileSystem tests" << endl;
+
+    // Tests on SimpleFileSystem
     SimpleFileSystem sfs;
     TextFile textFile("test");
     sfs.addFile(textFile.getName(), &textFile);
