@@ -66,4 +66,18 @@ int main() {
     // Allows us to test all commands
     cp->run();
 
+    // Delete dynamically allocated objects
+    delete cp;
+    delete tc;
+    delete rename;
+    delete copy;
+    delete display;
+    delete cat;
+    delete remove;
+    delete ls;
+    delete touch;
+    delete factory;
+    delete abstractSystem;
+
+    return SUCCESS;
 }
