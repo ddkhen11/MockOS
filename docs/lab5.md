@@ -306,3 +306,135 @@ $
 After these tests, we realized we forgot to set the size member variables of our image copy in our image clone function,
 so we went and fixed that. However, it was at this stage that we also realized that our clone functions were making
 shallow copies, not deep copies, so we went and fixed this as well. 
+
+[d.d.khen@shell lab5]$ ./mockos
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  touch image.img
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  touch text.txt
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  touch protected.img -p
+What is the password?
+123
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  ls
+image.img           protected.img
+text.txt
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  cat protected.img
+X X X X X3
+:wq
+Enter your password:
+123
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  Command not found
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  ds protected.img
+Enter your password:
+123
+X X
+X
+X X
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  Command not found
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  cp protected.img copy
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  ls
+copy.img            image.img
+protected.img       text.txt
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  ds copy.img
+Enter your password:
+123
+X X
+X
+X X
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  Command not found
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  cp text.txt copy
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  ls
+copy.img            copy.txt
+image.img           protected.img
+text.txt
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  ds copy.txt
+
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  cat text.txt
+hello
+:wq
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  ds copy.txt
+
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  ds text.txt
+hello
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  help rn
+MacroCommand constructs commands out of other commands
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  rn
+Error: option not supported for cp command
+This command failed and returned error: 15
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  rn
+Error: option not supported for cp command
+This command failed and returned error: 15
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  rn copy.txt txtcopy
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  ls
+copy.img            image.img
+protected.img       text.txt
+txtcopy.txt
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  tc newtext.txt -p
+What is the password?
+123
+hello worlddddd
+:wq
+Enter your password:
+123
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  Command not found
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  ls
+copy.img            image.img
+newtext.txt         protected.img
+text.txt            txtcopy.txt
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  ds newtxt.txt
+Error: This file does not exist
+This command failed and returned error: 8
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  ds newtext.txt
+Enter your password:
+123
+hello worlddddd
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  Command not found
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  ls -m
+Enter your password:
+123
+copy.img            image       9
+image.img           image       0
+Enter your password:
+123
+newtext.txt         text       15
+Enter your password:
+123
+protected.img       image       9
+text.txt            text        5
+txtcopy.txt         text        0
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  Command not found
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  help
+Available Commands: cat cp ds ls rm rn tc touch
+Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command.
+$  q
+Quitting Program.
