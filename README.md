@@ -23,8 +23,8 @@ MockOS is a C++ implementation of a mock operating system that provides file man
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/mockos.git
-   cd mockos
+   git clone https://github.com/ddkhen11/MockOS.git
+   cd MockOS
    ```
 
 2. Create a build directory and navigate to it:
